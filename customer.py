@@ -306,9 +306,94 @@ print("-------------------------------------------")
 print("Accuracy of DecisionTreeClassifier:{:.2f}%".format(dt_acc_score*100,'\n'))
 print("-------------------------------------------")
 print(classification_report(y_test,dt_predicted))
+#%%
+from sklearn.ensemble import GradientBoostingClassifier
+model_gbc = 'GradientBoostingClassifier'
+gbc = GradientBoostingClassifier(random_state = 0)
+gbc.fit(X_train, y_train)
+gbc_predicted = gbc.predict(X_test)
+gbc_conf_matrix = confusion_matrix(y_test, gbc_predicted)
+gbc_acc_score = accuracy_score(y_test, gbc_predicted)
+print("confussion matrix")
+print(gbc_conf_matrix)
+print("-------------------------------------------")
+print("Accuracy of GradientBoostingClassifier:{:.2f}%".format(gbc_acc_score*100,'\n'))
+print("-------------------------------------------")
+print(classification_report(y_test,gbc_predicted))
+#%%
+import lightgbm
+from lightgbm import LGBMClassifier
+model_lgb = 'LightGradientBoosting'
+lgb = LGBMClassifier(random_state = 0)
+lgb.fit(X_train, y_train)
+lgb_predicted = lgb.predict(X_test)
+lgb_conf_matrix = confusion_matrix(y_test, lgb_predicted)
+lgb_acc_score = accuracy_score(y_test, lgb_predicted)
+print("confussion matrix")
+print(lgb_conf_matrix)
+print("-------------------------------------------")
+print("Accuracy of LightGradientBoosting:{:.2f}%".format(lgb_acc_score*100,'\n'))
+print("-------------------------------------------")
+print(classification_report(y_test,lgb_predicted))
+#%%
+import catboost
+from catboost import CatBoostClassifier
+model_cbc = 'CatBoostClassifier'
+cbc = CatBoostClassifier(verbose=0, random_state = 0)
+cbc.fit(X_train, y_train)
+cbc_predicted = cbc.predict(X_test)
+cbc_conf_matrix = confusion_matrix(y_test, cbc_predicted)
+cbc_acc_score = accuracy_score(y_test, cbc_predicted)
+print("confussion matrix")
+print(cbc_conf_matrix)
+print("-------------------------------------------")
+print("Accuracy of CatBoostClassifier:{:.2f}%".format(cbc_acc_score*100,'\n'))
+print("-------------------------------------------")
+print(classification_report(y_test,cbc_predicted))
+#%%
+from sklearn.ensemble import AdaBoostClassifier
+model_ada = 'AdaBoostClassifier'
+ada = AdaBoostClassifier(random_state = 0)
+ada.fit(X_train, y_train)
+ada_predicted = ada.predict(X_test)
+ada_conf_matrix = confusion_matrix(y_test, ada_predicted)
+ada_acc_score = accuracy_score(y_test, ada_predicted)
+print("confussion matrix")
+print(ada_conf_matrix)
+print("-------------------------------------------")
+print("Accuracy of AdaBoostClassifier:{:.2f}%".format(ada_acc_score*100,'\n'))
+print("-------------------------------------------")
+print(classification_report(y_test,ada_predicted))
+#%%
+from sklearn.neural_network import MLPClassifier
+model_mlp = 'Multi-LayerPerception'
+mlp = MLPClassifier(hidden_layer_sizes=(64,64), alpha=1, random_state=0)
+mlp.fit(X_train, y_train)
+mlp_predicted = mlp.predict(X_test)
+mlp_conf_matrix = confusion_matrix(y_test, mlp_predicted)
+mlp_acc_score = accuracy_score(y_test, mlp_predicted)
+print("confussion matrix")
+print(mlp_conf_matrix)
+print("-------------------------------------------")
+print("Accuracy of Multi-LayerPerception:{:.2f}%".format(mlp_acc_score*100,'\n'))
+print("-------------------------------------------")
+print(classification_report(y_test,mlp_predicted))
 # %%
-model_ev = pd.DataFrame({'Model': ['Logistic Regression','Random Forest','Extreme Gradient Boost','Decision Tree'], 'Accuracy': [round((lr_acc_score*100), 2),
-                    round((rf_acc_score*100), 2),round((xgb_acc_score*100), 2),round((dt_acc_score*100), 2)]})
+model_ev = pd.DataFrame({'Model': ['Logistic Regression','Random Forest','Extreme Gradient Boost','Decision Tree', 'GradientBoostingClassifier', 'LightGradientBoosting', 'CatBoostClassifier', 'AdaBoostClassifier', 'Multi-LayerPerception'], 'Accuracy': [round((lr_acc_score*100), 2),
+                    round((rf_acc_score*100), 2),round((xgb_acc_score*100), 2),round((dt_acc_score*100), 2), round((gbc_acc_score*100), 2), round((lgb_acc_score*100), 2), round((cbc_acc_score*100), 2), round((ada_acc_score*100), 2), round((mlp_acc_score*100), 2)]})
 # %%
 model_ev.sort_values(by='Accuracy', ascending=False)
+# %%
+model_cbc = 'CatBoostClassifier'
+cbc = CatBoostClassifier(verbose=0, random_state = 0, depth = 6, l2_leaf_reg = 7, learning_rate = 0.03)
+cbc.fit(X_train, y_train)
+cbc_predicted = cbc.predict(X_test)
+cbc_conf_matrix = confusion_matrix(y_test, cbc_predicted)
+cbc_acc_score = accuracy_score(y_test, cbc_predicted)
+print("confussion matrix")
+print(cbc_conf_matrix)
+print("-------------------------------------------")
+print("Accuracy of CatBoostClassifier:{:.2f}%".format(cbc_acc_score*100,'\n'))
+print("-------------------------------------------")
+print(classification_report(y_test,cbc_predicted))
 # %%
