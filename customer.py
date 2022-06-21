@@ -53,6 +53,8 @@ df.isnull().sum()
 # %%
 #Data Types
 df.dtypes
+#%%
+df.describe()
 # %%
 def Cat_dist(variable):
     var = df[variable]
@@ -139,7 +141,7 @@ plt.show()
 #Further Analysis
 #Relationship Between Variables
 #Education vs Marriage
-pd.crosstab(df.education,df.marital).plot(kind="bar", stacked=True, figsize=(5,5), color=['#f67f58','#12c2e8'])
+pd.crosstab(df.education,df.marital).plot(kind="bar", stacked=True, figsize=(5,5), color=['#f67f58','#12c2e8', '#8A2BE2'])
 plt.title('Education vs Marriage')
 plt.xlabel('Education')
 plt.ylabel('Frequency')
@@ -172,6 +174,19 @@ plt.ylabel('Frequency')
 plt.legend(["No Deposit", "Deposited"])
 plt.xticks(rotation=0)
 plt.show()
+#%%
+#Month Vs Deposit
+#Occupation vs Deposit Status
+pd.crosstab(df.month,df.deposit).plot(kind="bar", stacked=True, figsize=(5,5), color=['#CD0000','#308014'])
+plt.title('Month vs Deposit Status')
+plt.xlabel('Months')
+plt.ylabel('Frequency')
+plt.legend(["No Deposit", "Deposited"])
+plt.xticks(rotation=90)
+plt.show()
+#%%
+#Duration VS Deposit Status
+sns.pointplot(x="deposit", y="duration", data=df)
 # %%
 #Age vs Deposit Status
 sns.boxplot(x="deposit", y="age", data=df, palette='twilight_r')
@@ -396,4 +411,7 @@ print("-------------------------------------------")
 print("Accuracy of CatBoostClassifier:{:.2f}%".format(cbc_acc_score*100,'\n'))
 print("-------------------------------------------")
 print(classification_report(y_test,cbc_predicted))
+# %%
+#After Model Improvement
+model_ev.sort_values(by='Accuracy', ascending=False)
 # %%
