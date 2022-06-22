@@ -45,20 +45,81 @@ Source of the data https://archive.ics.uci.edu/ml/datasets/bank+marketing
 
 ### EXPLORATORY DATA ANALYSIS OF DATA SET
 ## Occupation 
-![job](distoccup.png).
+![job](distoccup.png)
 
-![job](JobsVSBalance.png).
+![job](JobsVSBalance.png)
 
-![job](occupationVSdeposit.png).
+![job](occupationVSdeposit.png)
 
 As we can see people with Management jobs are more likly to make deposit.\
 We can also notice that most active balance and most deposit are mostly from managemnet and technician related jobs hence the need for the marketing department of the bank to increase marketing campaigns for people doing this jobs, one can also notice high balance of ritirees.
 
 ## Marital Status 
-![marital](marrybar.png).
+![marital](marrybar.png)
 
-![marital](marryVSdeposit.png).
+![marital](marryVSdeposit.png)
 
 It can be observed that married people where more likely to make a deposit but same can not be said of the divorced, It can also be observed that single people will most likely make a deposit.
 
-More soon...
+## Level Of Education 
+![education](edubar.png)
+
+![education](educationVSbalance.png)
+
+![education](eduVSdeposit.png)
+
+Most customers especially in developing countries in Africa have secondary education and it can be seen that the level of education does not necessarily affect the balance a customer have, but can help determine if a customer will be willing to make a deposit or not, during marketing campaign it will be easier to convince a customer with at least secondary level of education than it will be convincing people with lower educational qualification; Hence the need for the marketing department to start thinking outside the box and implementing creative marketing ideas for banks that will help develop creative campaigns resulting in more consumer engagement.
+
+## Month 
+![month](monthbar2.png)
+
+![month](monthVSdeposit.png)
+
+We see that the month of May had highest level of marketing/contact activity with customers. However, this was the month that potential depositors tend to reject deposit offer. For the next marketing campaign, it will be wise for the bank to focus the marketing campaign during the months of March, September, October and December because it had very little rejection of deposit offers. (December should be under consideration because it was the month with the lowest marketing activity yet with promising deposit status, there might be a reason why december is the lowest.)
+
+## Duration of Contact 
+![duration](durationdist.png)
+
+![duration](durationVSdeposit.png)
+
+It can be observed that the duration of time spent with a customer determines if the customer will make a deposit or not. Customers with lower duration of contact tend to reject deposit offer.
+
+
+## Other Observations 
+![contact](contactbar2.png)
+
+![balance](balandist.png)
+
+## DATA PROCESSING
+To clean up the data and prepare it for model building.\
+I obtained the summary of missing values in each column of the data set using the python code. **df.isnull().sum()**. but there were no missing value meaning the data was cleaned already.\
+
+I also transformed all categorical variable with **string values** into a form that is allowed by models for our machine algorithm to make better prediction.\
+This process is called **One-Hot Encoding** using the pandas library **df.get_dummies()**.\
+and I also used **Label Encoder** and **One-Hot Encoder** from **sklearn.preprocessing**.\
+
+**Deposit_Status** clearly is the target variable while every other features is taken as the independent variable.\
+The train_test feature of sci-kit Learn was used to split the data set into 80% for training each of the model while 20% was used to test the model.
+
+After building each model using the data set, the model accuracy for each was computed and arranged to provide information on models that performed well and a best fit for the bank deposit prediction plan.
+
+### MODEL ACCURACY TABLE
+
+![Model](model1.jpg)
+All the Model related to Boosting Classifier performed well with an average of 80% as model accuracy but I took special interest in **CatBoosting Model** that had 85.94% accuracy.\
+
+**CatBoosting Model** is a machine learning algorithm that uses gradient boosting on decision trees.\
+
+with an adjustment of the random_state, depth, l2_leaf_reg and learning_rate of catboost I discovered an increase in the level of accuracy from 85.94% to 86.07%.
+
+![Model](model2.jpg)
+
+## CONCLUSION
+In general, it can be obsereved that all models explored can achieve up to **80%** accuracy to help predict whether or not a potential client will suscribe to a deposit or not.The highest accuracy is **86%** from the **CatBoost Model**.
+
+## RECOMMENDATION
+1 Potential clients opted to suscribe term deposits during the seasons of fall and winter. The next marketing campaign should focus its activity throghout these seasons.\
+2 The next marketing campaign of the bank should target potential clients in their 20s or younger and 60s or older. It will be great if for the next campaign the bank addressed these two categories and therefore, increase the likelihood of more term deposits suscriptions.\
+3  Potential clients that were students or retired were the most likely to suscribe to a deposit. Retired individuals, tend to have more term deposits in order to gain some cash through interest payments. Hence the need to reachout to more retired individuals during marketing campaign.\
+4 Since duration of the call with customers is the feature that most positively correlates with whether a potential client will subscribe to a deposit or not, implementing a strategy that will increase the level of engagement of the potential client leading to an increase probability of suscribing to a deposit.\
+5 More attention be given to groups that recorded above average in duration of time spent during contact, there is a highly likelihood that this target group would subscribe to deposit.
