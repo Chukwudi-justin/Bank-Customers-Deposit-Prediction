@@ -49,7 +49,7 @@ Source of the data https://archive.ics.uci.edu/ml/datasets/bank+marketing
 
 ![job](JobsVSBalance.png)
 
-![job](occupationVSdeposit.png)
+![job](occupaVSdeposit2.png)
 
 As we can see people with Management jobs are more likly to make deposit.\
 We can also notice that most active balance and most deposit are mostly from managemnet and technician related jobs hence the need for the marketing department of the bank to increase marketing campaigns for people doing this jobs, one can also notice high balance of ritirees.
