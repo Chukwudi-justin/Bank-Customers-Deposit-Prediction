@@ -158,7 +158,7 @@ plt.xticks(rotation=0)
 plt.show()
 # %%
 #Occupation vs Deposit Status
-pd.crosstab(df.job,df.deposit).plot(kind="bar", stacked=True, figsize=(5,5), color=['#333333','#dd1818'])
+pd.crosstab(df.job,df.deposit).plot(kind="bar", stacked=True, figsize=(5,5), color=['#CD0000','#308014'])
 plt.title('Occupation vs Deposit Status')
 plt.xlabel('Occupation')
 plt.ylabel('Frequency')
@@ -176,7 +176,6 @@ plt.xticks(rotation=0)
 plt.show()
 #%%
 #Month Vs Deposit
-#Occupation vs Deposit Status
 pd.crosstab(df.month,df.deposit).plot(kind="bar", stacked=True, figsize=(5,5), color=['#CD0000','#308014'])
 plt.title('Month vs Deposit Status')
 plt.xlabel('Months')
@@ -397,6 +396,7 @@ print(classification_report(y_test,mlp_predicted))
 model_ev = pd.DataFrame({'Model': ['Logistic Regression','Random Forest','Extreme Gradient Boost','Decision Tree', 'GradientBoostingClassifier', 'LightGradientBoosting', 'CatBoostClassifier', 'AdaBoostClassifier', 'Multi-LayerPerception'], 'Accuracy': [round((lr_acc_score*100), 2),
                     round((rf_acc_score*100), 2),round((xgb_acc_score*100), 2),round((dt_acc_score*100), 2), round((gbc_acc_score*100), 2), round((lgb_acc_score*100), 2), round((cbc_acc_score*100), 2), round((ada_acc_score*100), 2), round((mlp_acc_score*100), 2)]})
 # %%
+# Before Adjustment
 model_ev.sort_values(by='Accuracy', ascending=False)
 # %%
 model_cbc = 'CatBoostClassifier'
@@ -411,6 +411,9 @@ print("-------------------------------------------")
 print("Accuracy of CatBoostClassifier:{:.2f}%".format(cbc_acc_score*100,'\n'))
 print("-------------------------------------------")
 print(classification_report(y_test,cbc_predicted))
+#%%
+model_ev = pd.DataFrame({'Model': ['Logistic Regression','Random Forest','Extreme Gradient Boost','Decision Tree', 'GradientBoostingClassifier', 'LightGradientBoosting', 'CatBoostClassifier', 'AdaBoostClassifier', 'Multi-LayerPerception'], 'Accuracy': [round((lr_acc_score*100), 2),
+                    round((rf_acc_score*100), 2),round((xgb_acc_score*100), 2),round((dt_acc_score*100), 2), round((gbc_acc_score*100), 2), round((lgb_acc_score*100), 2), round((cbc_acc_score*100), 2), round((ada_acc_score*100), 2), round((mlp_acc_score*100), 2)]})
 # %%
 #After Model Improvement
 model_ev.sort_values(by='Accuracy', ascending=False)
